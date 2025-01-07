@@ -1,0 +1,256 @@
+:root {
+  --primary: #ff0064;
+  --secondary: #000000;
+  --accent: #184c3e;
+  --background: #2b2b2b;
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.7);
+  --border: rgba(255, 0, 100, 1);
+  --hover: rgba(255, 255, 255, 0.05);
+
+  --header-height: 60px;
+  --nav-width: 280px;
+  --content-width: 800px;
+}
+
+[data-theme="light"] {
+  --background: #f0f0f0;
+  --text: #1a1a1a;
+  --text-muted: rgba(0, 0, 0, 0.7);
+  --border: rgba(0, 0, 0, 0.1);
+  --hover: rgba(0, 0, 0, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.layout {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "nav main";
+  grid-template-rows: var(--header-height) 1fr;
+  grid-template-columns: var(--nav-width) 1fr;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* Header styles */
+header {
+  grid-area: header;
+  border-bottom: 3px solid var(--border);
+  background-color: var(--secondary);
+  position: fixed;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 100;
+}
+
+.header-content {
+  max-width: 98vw;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.logo img {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+#search {
+  background-color: var(--hover);
+  border: 3px solid var(--border);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  width: 300px;
+  font-size: 0.9rem;
+}
+
+#theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+#theme-toggle:hover {
+  background-color: var(--hover);
+}
+
+/* Navigation styles */
+nav {
+  grid-area: nav;
+  border-right: 3px solid var(--border);
+  padding: 2rem;
+  position: fixed;
+  width: var(--nav-width);
+  height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+  top: var(--header-height);
+}
+
+.nav-content {
+  padding-bottom: 2rem;
+}
+
+.nav-list {
+  list-style: none;
+}
+
+.nav-category {
+  margin: 1.5rem 0 0.5rem;
+}
+
+.nav-category > span {
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nav-item {
+  margin: 0.25rem 0;
+}
+
+.nav-item a {
+  display: block;
+  padding: 0.5rem;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.nav-item a:hover {
+  background-color: var(--hover);
+}
+
+.nav-item a.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Main content styles */
+main {
+  grid-area: main;
+  padding: 2rem;
+}
+
+.content {
+  max-width: 80vw;
+  margin: 0 auto;
+}
+
+/* Typography */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.4rem;
+  margin: 1.5rem 0 1rem;
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+/* Code blocks */
+pre {
+  background-color: var(--secondary);
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+code {
+  font-family: "Fira Code", monospace;
+  font-size: 0.9rem;
+}
+
+:not(pre) > code {
+  background-color: var(--secondary);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-areas:
+      "header"
+      "main";
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .content {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-content {
+    padding: 0 1rem;
+  }
+
+  #search {
+    width: 200px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
